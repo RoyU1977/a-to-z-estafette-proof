@@ -4,7 +4,7 @@ Smalle BUILD-455 v0.1 productoutput: een kleine lokale checklist-webapp in de br
 
 ## Openen
 
-1. Open `/home/runner/work/a-to-z-estafette-proof/a-to-z-estafette-proof/index.html` in een browser.
+1. Open lokaal het bestand `index.html` in een browser (bijv. via dubbelklik of drag-and-drop in een browservenster).
 
 ## Gebruiken
 
