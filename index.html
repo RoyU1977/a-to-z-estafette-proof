@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUILD-455 Checklist</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.4; }
+    .card { max-width: 520px; padding: 1rem 1.25rem; border: 1px solid #ccc; border-radius: 8px; }
+    ul { list-style: none; padding-left: 0; }
+    li { margin: 0.5rem 0; }
+    .status { margin-top: 1rem; font-weight: 700; }
+    button { margin-top: 1rem; padding: 0.5rem 0.75rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Smalle BUILD-455 checklist</h1>
+    <p>Vink de taken af en zie direct of alles klaar is.</p>
+
+    <ul id="checklist">
+      <li><label><input type="checkbox"> Starttaak afronden</label></li>
+      <li><label><input type="checkbox"> Belangrijk punt controleren</label></li>
+      <li><label><input type="checkbox"> Laatste stap bevestigen</label></li>
+    </ul>
+
+    <p id="status" class="status" aria-live="polite">Status: nog niet klaar.</p>
+    <button id="reset" type="button">Reset / schone lei</button>
+  </main>
+
+  <script>
+    const checkboxes = Array.from(document.querySelectorAll('#checklist input[type="checkbox"]'));
+    const status = document.getElementById('status');
+    const reset = document.getElementById('reset');
+
+    function updateStatus() {
+      const done = checkboxes.filter(c => c.checked).length;
+      const total = checkboxes.length;
+      if (done === total) {
+        status.textContent = 'Status: klaar! Alle taken zijn afgevinkt.';
+      } else {
+        status.textContent = `Status: ${done}/${total} taken afgevinkt.`;
+      }
+    }
+
+    checkboxes.forEach(c => c.addEventListener('change', updateStatus));
+    reset.addEventListener('click', () => {
+      checkboxes.forEach(c => { c.checked = false; });
+      status.textContent = 'Status: nog niet klaar.';
+    });
+
+    updateStatus();
+  </script>
+</body>
+</html>
